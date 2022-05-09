@@ -15,13 +15,7 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload());
-if(process.env.NODE_ENV == "production")
-{
-    app.use(express.static(`../frontend/build`));
-    app.get("/", (req, res) => {
-      res.sendFile("../frontend/build/index.html");
-    });
-}
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
 // Import all the routes
 
 const products = require('./routes/product');
@@ -36,7 +30,11 @@ app.use('/api/v1/', order)
 app.use('/api/v1/', payment)
 
 // Middleware to handle errors.
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+});
 
 app.use(errorMiddleware);
+
 
 module.exports = app    
