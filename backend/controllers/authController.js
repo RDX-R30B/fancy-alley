@@ -78,10 +78,10 @@ exports.generateQR = catchAsyncErrors(async (req,res,next)=>{
 // Mobile will scan and send the info in this controller => /api/v1/qr/:tokenID
 exports.verifyQR = catchAsyncErrors(async (req,res,next)=>{
 
-    // const {ObjectId} = req.body;
+    // const {email} = req.body;
     // const {tokenID} = req.param;
 
-    const qr = await QRCode.findOneAndUpdate({tokenID : req.params.tokenID},{userObjectID:req.body.ObjectId},{new:true})
+    const qr = await QRCode.findOneAndUpdate({tokenID : req.params.tokenID},{email : req.body.email},{new:true})
 
     if (!qr) {
       return next(
@@ -103,9 +103,9 @@ exports.loginQR = catchAsyncErrors(async (req,res,next)=>{
     if (!qr) {
       return next(new ErrorHandler("QRCode is expired, please refresh it again", 404));
     }
-
-    const user = await User.findOne({_id : mongoose.Types.ObjectId(qr.userObjectID)});
-    console.log(user);
+    // console.log(qr.email)
+    const user = await User.findOne({email : qr.email});
+    // console.log(user);
     if(user == null)
         res.status(200).send(user);
      

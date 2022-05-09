@@ -7,7 +7,7 @@ const qrSchema = new mongoose.Schema({
         unique:true,
         trim:true
     },
-    userObjectID : {
+    email : {
         type:String
     },
     createAt : {
