@@ -15,7 +15,10 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload());
-
+if(process.env.NODE_ENV == "PRODUCTION")
+{
+    app.use(express.static(`../frontend/build`));
+}
 // Import all the routes
 
 const products = require('./routes/product');
