@@ -17,9 +17,7 @@ const spawn = require("child_process").spawn;
 
 const qrcode = (url) => {
   return new Promise((resolve, reject) => {
-    var workerProcess = spawn("pipenv", [
-      "run",
-      "python",
+    var workerProcess = spawn("python", [
       `${__dirname}/qrcode.py`,
       url,
     ]);

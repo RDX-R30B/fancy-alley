@@ -67,7 +67,7 @@ exports.loginUser = catchAsyncErrors(async (req,res,next) => {
 exports.generateQR = catchAsyncErrors(async (req,res,next)=>{
     const tokenID = crypto.randomBytes(15).toString("hex");
     // const tokenID = '65ff5ad823736b8f1f244e600a4a39';
-    let dataURL=await qrcode(`https://myappforheroku.herokuapp.com/api/v1/qr/${tokenID}`);
+    let dataURL=await qrcode(`https://fancy-alley.herokuapp.com/api/v1/qr/${tokenID}`);
     const qr = await QRCode.create({
         tokenID,
     })

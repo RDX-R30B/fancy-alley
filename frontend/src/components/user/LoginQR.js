@@ -38,6 +38,7 @@ const LoginQR = () => {
   useEffect(() => {
       async function fetchURL(){
         const req = await axios.get('/api/v1/qrgenerator');
+        console.log('happening')
         setDataURL(req.data.dataURL)
         setTokenID(req.data.tokenID)
         // console.log(" data :" + req.data);
