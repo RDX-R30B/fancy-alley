@@ -7,7 +7,7 @@ const cloudinary = require('cloudinary');
 const fileUpload = require('express-fileupload')
 const dotenv = require('dotenv');
 const errorMiddleware = require('./middlewares/errors')
-
+const path = require('path')
 // Setting up config file
 dotenv.config({path: 'backend/config/config.env'})
 
