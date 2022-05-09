@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload());
-if(process.env.NODE_ENV == "PRODUCTION")
+if(process.env.NODE_ENV == "production")
 {
     app.use(express.static(`../frontend/build`));
 }
